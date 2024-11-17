@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package transmitter;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+option go_package = "greaterm/alien_detector/gen/go/transmitter";
+
+service TransmitterService {
+  rpc GetData(google.protobuf.Empty) returns (stream Response) {}
+}
+
+message Response {
+  string session_id = 1; 
+  double frequency = 2;  
+  google.protobuf.Timestamp time = 3;  // current timestamp in UTC.
+}
+
